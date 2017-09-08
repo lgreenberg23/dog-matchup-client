@@ -7,7 +7,8 @@ import HumanTraits from './components/humanTraits'
 class App extends Component {
 
   state ={
-    personalityTraits: []
+    personalityTraits: [],
+    dog: []
   }
 
 
@@ -27,15 +28,33 @@ class App extends Component {
     }
     fetch('http://localhost:3000/api/v1/get_traits', createParams)
       .then(res => res.json()).then(personInfo => {
-      
+
       let person = [
         {energy: ((personInfo.tree.children[0].children[0].children[2].children[0].percentage)*100)},
         {confidence: (100-((personInfo.tree.children[0].children[0].children[4].children[4].percentage)*100))},
         {focus: ((personInfo.tree.children[0].children[0].children[1].children[5].percentage)*100)},
         {independence: ((personInfo.tree.children[0].children[0].children[0].children[0].percentage)*100)}
       ]
-      // console.log(person)
-        this.setState({ personalityTraits: person})
+
+
+      // below is the fetch to get the dog breed (it's inside the fetch above)
+      const dogParams = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({personInfo: {info: person}})
+      }
+
+      fetch('http://localhost:3000/api/v1/get_breed', dogParams)
+        .then(res => res.json()).then(dogInfo => {
+          let dog = dogInfo
+
+        })
+
+        this.setState({
+          personalityTraits: person
+        })
         console.log(this.state.personalityTraits)
     })
   }
