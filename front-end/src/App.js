@@ -3,12 +3,15 @@ import logo from './logo.svg';
 import './App.css';
 import InputForm from './components/InputForm'
 import HumanTraits from './components/humanTraits'
+import DogMatch from './components/DogMatch'
+import LoadingModal from './components/LoadingModal'
+
 
 class App extends Component {
 
   state ={
     personalityTraits: [],
-    dog: []
+    dogs: []
   }
 
 
@@ -19,6 +22,10 @@ class App extends Component {
   // focus = self-efficacy
   // independence = adventurousness
   fetchAnalysis = (text) => {
+    this.setState({
+      personalityTraits: undefined,
+      dogs: undefined
+    })
     const createParams = {
       method: 'POST',
       headers: {
@@ -29,7 +36,7 @@ class App extends Component {
     fetch('http://localhost:3000/api/v1/get_traits', createParams)
       .then(res => res.json()).then(personInfo => {
 
-      let person = [
+       let person = [
         {energy: ((personInfo.tree.children[0].children[0].children[2].children[0].percentage)*100)},
         {confidence: (100-((personInfo.tree.children[0].children[0].children[4].children[4].percentage)*100))},
         {focus: ((personInfo.tree.children[0].children[0].children[1].children[5].percentage)*100)},
@@ -47,20 +54,19 @@ class App extends Component {
       }
 
       fetch('http://localhost:3000/api/v1/get_breed', dogParams)
-        .then(res => res.json()).then(dogInfo => {
-          let dog = dogInfo
-
+        .then(res => res.json())
+        .then(dogInfo => {
+          this.setState({
+            personalityTraits: person,
+            dogs: dogInfo
+          })
         })
-
-        this.setState({
-          personalityTraits: person
-        })
-        console.log(this.state.personalityTraits)
     })
   }
 
+
   render() {
-    if (this.state.personalityTraits.length > 1 ) {
+    if (this.state.personalityTraits !== undefined && this.state.personalityTraits.length > 1 ) {
       return (
       <div className="App">
         <div className="App-header">
@@ -69,9 +75,21 @@ class App extends Component {
         </div>
           <InputForm fetchAnalysis={this.fetchAnalysis}/>
           <HumanTraits person={this.state.personalityTraits}/>
+          <DogMatch dogs={this.state.dogs}/>
       </div>
     );
-    } else {
+  } else if (this.state.personalityTraits === undefined) {
+      return (
+        <div className="App">
+          <div className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h2>Welcome to React</h2>
+          </div>
+            <InputForm fetchAnalysis={this.fetchAnalysis}/>
+            <LoadingModal />
+        </div>
+      )
+  } else {
       return (
       <div className="App">
         <div className="App-header">

@@ -9,7 +9,6 @@ class InputForm extends React.Component{
 
 	onSubmit = (event) => {
 		event.preventDefault()
-		console.log(this.state.personalityText)
 		this.props.fetchAnalysis(this.state.personalityText)
 	}
 
