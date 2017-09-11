@@ -10,8 +10,10 @@ const ModalScrollingExample = (props) => (
         <Header>Description</Header>
         <p>{props.dog[1]}</p>
         <p>Perfect For You!</p>
+
       </Modal.Description>
     </Modal.Content>
+    <Button onClick={props.leaveComment}>Leave a comment on this breed</Button>
   </Modal>
 )
 

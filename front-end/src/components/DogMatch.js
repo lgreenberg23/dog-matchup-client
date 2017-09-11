@@ -6,15 +6,15 @@ class DogMatch extends React.Component {
 
 
 	render() {
-		let displayDogs = this.props.dogs.map((dog, index) => {
-			return <li key={index}> {dog[0]}<div><img src={dog[2]}/></div><DogInfoModal dog={dog}/> </li>
+		let display = this.props.dogs.map((dog, index) => {
+			return <li key={index}> {dog[0]}<div><img src={dog[2]} alt=""/></div><DogInfoModal dog={dog} leaveComment={this.props.leaveComment}/> </li>
 		})
 
 		return(
       <div className="dogs" >
         Based on your personality results above, here are the top 3 choices of dogs breeds that we've come up with for you:
         <ul>
-				  {displayDogs}
+				  {display}
         </ul>
 			</div>
 			)

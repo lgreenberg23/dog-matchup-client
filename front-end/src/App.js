@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import InputForm from './components/InputForm'
 import HumanTraits from './components/humanTraits'
 import DogMatch from './components/DogMatch'
 import LoadingModal from './components/LoadingModal'
 import Blog from './components/Blogs'
+import Navbar from './components/Navbar'
+import Display from './components/display'
+import {Grid, Segment} from 'semantic-ui-react'
 
 
 
@@ -31,7 +34,6 @@ class App extends Component {
       dogs: [],
       blogs: []
     })
-
     const createParams = {
       method: 'POST',
       headers: {
@@ -93,49 +95,73 @@ class App extends Component {
     })
   }
 
+  leaveComment = () => {
+    //write some code in here
+  }
+
 
   render() {
     if (this.state.personalityTraits !== undefined && this.state.personalityTraits.length > 1 ) {
       return (
+        //this is the fial one with matched dogs and human traits
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
+
+          <Navbar />
+
+
           <InputForm fetchBlogs={this.fetchBlogs}/>
+
           <HumanTraits person={this.state.personalityTraits}/>
-          <DogMatch dogs={this.state.dogs}/>
+          <DogMatch dogs={this.state.dogs} leaveComment={this.leaveComment} />
+
+ 
       </div>
     );
   } else if (this.state.personalityTraits === undefined) {
+    //loading bar page
       return (
         <div className="App">
-          <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h2>Welcome to React</h2>
+          <div className="row">
+            <Navbar />
           </div>
+          <div className="row">
             <InputForm fetchBlogs={this.fetchBlogs}/>
             <LoadingModal />
+            </div>
         </div>
       )
   } else if (this.state.personalityTraits.length < 1 && this.state.blogs.length > 1) {
       return (
+        //choose the blog you want to analyze
         <div className="App">
-          <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h2>Welcome to React</h2>
-          </div>
+
+            <Navbar />
+
+          <Segment>
           <Blog fetchAnalysis={this.fetchAnalysis} blogs={this.state.blogs}/>
+          </Segment>
+          
         </div>
       )
   } else {
+    //this is the first render, home screen
       return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-          <InputForm fetchBlogs={this.fetchBlogs}/>
+
+          <Segment>
+          <Navbar />
+  
+        </Segment>
+        
+           {//<Segment>
+                    //<InputForm fetchBlogs={this.fetchBlogs}/>
+                    //</Segment>
+                  }
+          
+          <Segment>
+          <Display fetchBlogs={this.fetchBlogs} />
+          </Segment>
+
       </div>
     );
     }
