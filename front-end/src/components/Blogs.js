@@ -8,10 +8,10 @@ class Blogs extends React.Component {
 
 	render() {
 
-    let blogs = this.props.blogs.map((blog) => {
+    let blogs = this.props.blogs.map((blog, index) => {
       for (let key in blog) {
         // debugger
-        return (<li value={blog[key][1]} onClick={this.getAnalysis}>{key}</li>)
+        return (<li key={index} value={blog[key][1]} onClick={this.getAnalysis}>{key}</li>)
       }
     })
 

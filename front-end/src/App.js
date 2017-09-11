@@ -95,10 +95,6 @@ class App extends Component {
     })
   }
 
-  leaveComment = () => {
-    //write some code in here
-  }
-
 
   render() {
     if (this.state.personalityTraits !== undefined && this.state.personalityTraits.length > 1 ) {
@@ -114,7 +110,7 @@ class App extends Component {
           <HumanTraits person={this.state.personalityTraits}/>
           <DogMatch dogs={this.state.dogs} leaveComment={this.leaveComment} />
 
- 
+
       </div>
     );
   } else if (this.state.personalityTraits === undefined) {
@@ -140,7 +136,7 @@ class App extends Component {
           <Segment>
           <Blog fetchAnalysis={this.fetchAnalysis} blogs={this.state.blogs}/>
           </Segment>
-          
+
         </div>
       )
   } else {
@@ -150,14 +146,14 @@ class App extends Component {
 
           <Segment>
           <Navbar />
-  
+
         </Segment>
-        
+
            {//<Segment>
                     //<InputForm fetchBlogs={this.fetchBlogs}/>
                     //</Segment>
                   }
-          
+
           <Segment>
           <Display fetchBlogs={this.fetchBlogs} />
           </Segment>

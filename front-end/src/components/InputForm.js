@@ -21,7 +21,6 @@ class InputForm extends React.Component{
 	}
 
 	handleChange = (e) => {
-		console.log(e.target.value)
 		this.setState({ name: e.target.value})
 	}
 
@@ -34,7 +33,7 @@ class InputForm extends React.Component{
 				<div className="InputForm">
 
 
-			<Input onChange={this.handleChange} 
+			<Input onChange={this.handleChange}
 			    icon={<Icon onClick={this.onSubmit} name='search' inverted circular link />}
 			    placeholder='Search...'
 			 />
