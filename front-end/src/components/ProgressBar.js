@@ -9,13 +9,13 @@ export default class ProgressExampleIndicating extends Component {
     let timesRan = 0
     var interval = setInterval(function(){
       timesRan += 1;
-      if(timesRan === 4){
+      if(timesRan === 5){
         clearInterval(interval);
       }
       self.setState({
         percent: self.state.percent + 20,
       });
-    }, 1490);
+    }, 750);
     return interval
   }
 

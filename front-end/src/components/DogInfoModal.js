@@ -1,18 +1,18 @@
 import React from 'react'
-import { Button, Header, Image, Modal } from 'semantic-ui-react'
+import { Button, Header, Icon, Image, Modal } from 'semantic-ui-react'
 
-const ModalModalExample = (props) => (
-  <Modal trigger={<Button>Show Modal</Button>}>
-    <Modal.Header>Select a Photo</Modal.Header>
+const ModalScrollingExample = (props) => (
+  <Modal trigger={<Button>More Info!</Button>}>
+    <Modal.Header>{props.dog[0]}</Modal.Header>
     <Modal.Content image>
-      <Image wrapped size='medium' src='/assets/images/avatar/large/rachel.png' />
+      <Image wrapped size='medium' src={props.dog[2]} />
       <Modal.Description>
-        <Header>Default Profile Image</Header>
-        <p>We've found the following gravatar image associated with your e-mail address.</p>
-        <p>Is it okay to use this photo?</p>
+        <Header>Description</Header>
+        <p>{props.dog[1]}</p>
+        <p>Perfect For You!</p>
       </Modal.Description>
     </Modal.Content>
   </Modal>
 )
 
-export default ModalModalExample
+export default ModalScrollingExample

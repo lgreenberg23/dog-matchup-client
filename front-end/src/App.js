@@ -5,13 +5,16 @@ import InputForm from './components/InputForm'
 import HumanTraits from './components/humanTraits'
 import DogMatch from './components/DogMatch'
 import LoadingModal from './components/LoadingModal'
+import Blog from './components/Blogs'
+
 
 
 class App extends Component {
 
   state ={
     personalityTraits: [],
-    dogs: []
+    dogs: [],
+    blogs: [],
   }
 
 
@@ -21,7 +24,33 @@ class App extends Component {
   // confidence = inverse of self-consciousness
   // focus = self-efficacy
   // independence = adventurousness
-  fetchAnalysis = (text) => {
+
+  fetchBlogs = (text) => {
+    this.setState({
+      personalityTraits: [],
+      dogs: [],
+      blogs: []
+    })
+
+    const createParams = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({userInput: {input: text}})
+    }
+    fetch('http://localhost:3000/api/v1/get_blogs', createParams)
+      .then(res => res.json())
+      .then(blogTitles => {
+        this.setState({
+          blogs: blogTitles
+        })
+
+      })
+  }
+
+  fetchAnalysis = (url) => {
+
     this.setState({
       personalityTraits: undefined,
       dogs: undefined
@@ -31,7 +60,7 @@ class App extends Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({userInput: {input: text}})
+      body: JSON.stringify({userInput: {input: url}})
     }
     fetch('http://localhost:3000/api/v1/get_traits', createParams)
       .then(res => res.json()).then(personInfo => {
@@ -73,7 +102,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-          <InputForm fetchAnalysis={this.fetchAnalysis}/>
+          <InputForm fetchBlogs={this.fetchBlogs}/>
           <HumanTraits person={this.state.personalityTraits}/>
           <DogMatch dogs={this.state.dogs}/>
       </div>
@@ -85,8 +114,18 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
             <h2>Welcome to React</h2>
           </div>
-            <InputForm fetchAnalysis={this.fetchAnalysis}/>
+            <InputForm fetchBlogs={this.fetchBlogs}/>
             <LoadingModal />
+        </div>
+      )
+  } else if (this.state.personalityTraits.length < 1 && this.state.blogs.length > 1) {
+      return (
+        <div className="App">
+          <div className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h2>Welcome to React</h2>
+          </div>
+          <Blog fetchAnalysis={this.fetchAnalysis} blogs={this.state.blogs}/>
         </div>
       )
   } else {
@@ -96,7 +135,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-          <InputForm fetchAnalysis={this.fetchAnalysis}/>
+          <InputForm fetchBlogs={this.fetchBlogs}/>
       </div>
     );
     }

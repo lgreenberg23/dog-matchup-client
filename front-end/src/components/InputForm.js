@@ -4,16 +4,17 @@ import React from 'react'
 class InputForm extends React.Component{
 
 	state = {
-		personalityText: ''
+		name: ''
 	}
 
 	onSubmit = (event) => {
 		event.preventDefault()
-		this.props.fetchAnalysis(this.state.personalityText)
+		this.props.fetchBlogs(this.state.name)
 	}
 
 	handleChange = (e) => {
-		this.setState({ personalityText: e.target.value})
+		console.log(e.target.value)
+		this.setState({ name: e.target.value})
 	}
 
 	render(){

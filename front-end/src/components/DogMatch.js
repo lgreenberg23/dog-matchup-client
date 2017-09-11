@@ -7,7 +7,7 @@ class DogMatch extends React.Component {
 
 	render() {
 		let displayDogs = this.props.dogs.map((dog, index) => {
-			return <li key={index}> {dog[0]}<div><img src={dog[2]} onClick={this.showInfo}/></div> </li>
+			return <li key={index}> {dog[0]}<div><img src={dog[2]}/></div><DogInfoModal dog={dog}/> </li>
 		})
 
 		return(
@@ -19,11 +19,6 @@ class DogMatch extends React.Component {
 			</div>
 			)
 	}
-
-  showInfo = () => {
-    console.log("i am clicking")
-    return(<div><DogInfoModal dogs={this.props.dogs}/></div>)
-    }
 
 }
 
