@@ -11,7 +11,7 @@ class DogMatch extends React.Component {
 		
 		let display = this.props.dogs.map((dog, index) => {
 			return(
-			<li key={index}> {dog[0]}<div><img src={dog[2]} alt=""/></div><DogInfoModal dog={dog}/></li>
+			<div> {dog[0]}<div><img src={dog[2]} alt=""/></div><DogInfoModal dog={dog}/></div>
 		)
 		})
 

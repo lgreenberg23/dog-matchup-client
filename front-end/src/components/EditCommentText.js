@@ -1,13 +1,11 @@
 import React from 'react'
 import { Form, TextArea } from 'semantic-ui-react'
 
-class TextAreaExampleTextArea extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
+class EditCommentText extends React.Component {
+
+  state = {
       input: this.props.commment
     }
-  }
 
   handleChange(e) {
     this.setState({
@@ -19,10 +17,10 @@ class TextAreaExampleTextArea extends React.Component {
     debugger
     return (
       <Form>
-        <TextArea value={this.state.input} onChange={this.handleChange}/>
+        <Input value={this.state.input} onChange={this.handleChange}/>
       </Form>
     )
   }
 }
 
-export default TextAreaExampleTextArea
+export default EditCommentText
