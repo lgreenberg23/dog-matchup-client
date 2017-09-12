@@ -4,6 +4,14 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import 'semantic-ui-css/semantic.min.css';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import Navbar from './components/Navbar'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+
+ReactDOM.render(<Router>
+	<div>
+		<Route path="/" component={Navbar}/>
+		<App />
+	</div>
+	</Router>, document.getElementById('root'));
 registerServiceWorker();

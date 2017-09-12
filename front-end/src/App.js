@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
 import './App.css';
 import InputForm from './components/InputForm'
 import HumanTraits from './components/humanTraits'
@@ -9,7 +8,7 @@ import Blog from './components/Blogs'
 import Navbar from './components/Navbar'
 import Display from './components/display'
 import {Grid, Segment} from 'semantic-ui-react'
-
+import {Route} from 'react-router-dom'
 
 
 class App extends Component {
@@ -97,67 +96,38 @@ class App extends Component {
 
 
   render() {
+    // <Route path="/" component={Navbar}/>
+
     if (this.state.personalityTraits !== undefined && this.state.personalityTraits.length > 1 ) {
       return (
         //this is the fial one with matched dogs and human traits
       <div className="App">
-
-          <Navbar />
-
-
+          
           <InputForm fetchBlogs={this.fetchBlogs}/>
-
           <HumanTraits person={this.state.personalityTraits}/>
           <DogMatch dogs={this.state.dogs} leaveComment={this.leaveComment} />
-
-
       </div>
     );
   } else if (this.state.personalityTraits === undefined) {
     //loading bar page
       return (
-        <div className="App">
-          <div className="row">
-            <Navbar />
-          </div>
-          <div className="row">
+        <div className="App row">
             <InputForm fetchBlogs={this.fetchBlogs}/>
             <LoadingModal />
-            </div>
         </div>
       )
   } else if (this.state.personalityTraits.length < 1 && this.state.blogs.length > 1) {
       return (
         //choose the blog you want to analyze
         <div className="App">
-
-            <Navbar />
-
-          <Segment>
-          <Blog fetchAnalysis={this.fetchAnalysis} blogs={this.state.blogs}/>
-          </Segment>
-
-        </div>
+          <Segment><Blog fetchAnalysis={this.fetchAnalysis} blogs={this.state.blogs}/></Segment>
+       </div>
       )
   } else {
     //this is the first render, home screen
       return (
       <div className="App">
-
-          <Segment>
-          <Navbar />
-
-        </Segment>
-
-           {//<Segment>
-                    //<InputForm fetchBlogs={this.fetchBlogs}/>
-                    //</Segment>
-                  }
-
-          <Segment>
-          <Display fetchBlogs={this.fetchBlogs} />
-          </Segment>
-
+          <Segment><Display fetchBlogs={this.fetchBlogs} /></Segment>
       </div>
     );
     }

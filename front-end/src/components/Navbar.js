@@ -13,7 +13,7 @@ import {
 } from 'semantic-ui-react'
 
 const Navbar = () => (
-  <div>
+  <Segment><div>
 <Menu fixed='top' size='large'>
   <Container>
     <Menu.Item as='a'>Find Your Perfect Match Dog</Menu.Item>
@@ -24,6 +24,6 @@ const Navbar = () => (
     </Menu.Menu>
   </Container>
 </Menu>
-</div>)
+</div></Segment>)
 
 export default Navbar
