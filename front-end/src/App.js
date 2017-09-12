@@ -5,10 +5,9 @@ import HumanTraits from './components/humanTraits'
 import DogMatch from './components/DogMatch'
 import LoadingModal from './components/LoadingModal'
 import Blog from './components/Blogs'
-import Navbar from './components/Navbar'
 import Display from './components/display'
-import {Grid, Segment} from 'semantic-ui-react'
-import {Route} from 'react-router-dom'
+import { Segment} from 'semantic-ui-react'
+import {Route, Redirect} from 'react-router-dom'
 
 
 class App extends Component {
@@ -94,43 +93,57 @@ class App extends Component {
     })
   }
 
+  usingRoutes = () => {
+      if (this.state.personalityTraits !== undefined && this.state.personalityTraits.length > 1 ) {
+           return <Redirect to="/match" />
+    } else if (this.state.personalityTraits === undefined) {
+       return <Redirect to="/load" />
+    } else if (this.state.personalityTraits.length < 1 && this.state.blogs.length > 1) {
+       return <Redirect to="/blogs" />
+    } else {
+       return <Redirect to="/app" />
+      }
+  }
 
   render() {
     // <Route path="/" component={Navbar}/>
 
-    if (this.state.personalityTraits !== undefined && this.state.personalityTraits.length > 1 ) {
+      
       return (
+        <div>
+        {this.usingRoutes()}
+
+    <Route path="/match" render={()=> 
         //this is the fial one with matched dogs and human traits
-      <div className="App">
-          
+      <div className="App">    
           <InputForm fetchBlogs={this.fetchBlogs}/>
           <HumanTraits person={this.state.personalityTraits}/>
           <DogMatch dogs={this.state.dogs} leaveComment={this.leaveComment} />
       </div>
-    );
-  } else if (this.state.personalityTraits === undefined) {
+  }/>
+     <Route path="/load" render={()=>  
     //loading bar page
-      return (
+      (
         <div className="App row">
             <InputForm fetchBlogs={this.fetchBlogs}/>
             <LoadingModal />
         </div>
       )
-  } else if (this.state.personalityTraits.length < 1 && this.state.blogs.length > 1) {
-      return (
+  }/>
+      <Route path="/blogs" render={()=> 
         //choose the blog you want to analyze
         <div className="App">
           <Segment><Blog fetchAnalysis={this.fetchAnalysis} blogs={this.state.blogs}/></Segment>
        </div>
-      )
-  } else {
+    }/>
+    <Route path="/app" render={()=> 
     //this is the first render, home screen
-      return (
       <div className="App">
           <Segment><Display fetchBlogs={this.fetchBlogs} /></Segment>
       </div>
-    );
-    }
+    }/>
+    </div>
+    )
   }
 }
 

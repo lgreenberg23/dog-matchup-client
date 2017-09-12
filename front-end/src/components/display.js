@@ -4,12 +4,9 @@ import InputForm from './InputForm'
 import {
   Button,
   Container,
-  Divider,
   Grid,
   Header,
-  Image,
   List,
-  Menu,
   Segment
 } from 'semantic-ui-react'
 

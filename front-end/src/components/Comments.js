@@ -2,10 +2,10 @@ import React from 'react'
 import { Icon, List } from 'semantic-ui-react'
 
 export default class Comments extends React.Component {
-	constructor(props) {
-		super(props)
+	// constructor(props) {
+	// 	super(props)
 
-	}
+	// }
 
   deleteComment = (e) => {
   	// debugger

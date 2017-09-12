@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Modal } from 'semantic-ui-react'
+import { Modal } from 'semantic-ui-react'
 import ProgressBar from './ProgressBar'
 
 class ModalExampleSize extends Component {
