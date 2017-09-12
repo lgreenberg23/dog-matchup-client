@@ -107,21 +107,18 @@ class App extends Component {
 
   render() {
     // <Route path="/" component={Navbar}/>
-
-      
       return (
         <div>
         {this.usingRoutes()}
-
-    <Route path="/match" render={()=> 
+    <Route path="/match" render={()=>
         //this is the fial one with matched dogs and human traits
-      <div className="App">    
+      <div className="App">
           <InputForm fetchBlogs={this.fetchBlogs}/>
           <HumanTraits person={this.state.personalityTraits}/>
           <DogMatch dogs={this.state.dogs} leaveComment={this.leaveComment} />
       </div>
   }/>
-     <Route path="/load" render={()=>  
+     <Route path="/load" render={()=>
     //loading bar page
       (
         <div className="App row">
@@ -130,13 +127,13 @@ class App extends Component {
         </div>
       )
   }/>
-      <Route path="/blogs" render={()=> 
+      <Route path="/blogs" render={()=>
         //choose the blog you want to analyze
         <div className="App">
           <Segment><Blog fetchAnalysis={this.fetchAnalysis} blogs={this.state.blogs}/></Segment>
        </div>
     }/>
-    <Route path="/app" render={()=> 
+    <Route path="/app" render={()=>
     //this is the first render, home screen
       <div className="App">
           <Segment><Display fetchBlogs={this.fetchBlogs} /></Segment>

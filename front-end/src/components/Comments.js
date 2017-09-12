@@ -1,5 +1,6 @@
 import React from 'react'
 import { Icon, List } from 'semantic-ui-react'
+import ListItem from './ListItem'
 
 export default class Comments extends React.Component {
 	// constructor(props) {
@@ -8,24 +9,26 @@ export default class Comments extends React.Component {
 	// }
 
   deleteComment = (e) => {
+    this.props.deleteComment(e.target.getAttribute('value'), this.props.dog)
+  }
+
+  updateComment = (e) => {
   	// debugger
-    this.props.deleteComment(e.target.parentElement.innerText, this.props.dog)
+    this.props.updateComment(e.target.getAttribute('value'), this.props.dog)
   }
 
 	render() {
-    console.log("comments", this.props.comments)
 		let display = this.props.comments.map((comment, index) => {
-				return( 
-				<List.Item 
-				key={index}
-				icon={<Icon onClick={this.deleteComment} name='remove' />}
-				content={comment.text} 
-				/>)
+				return(
+				<ListItem  key={index} deleteComment={this.deleteComment} updateComment={this.updateComment} comment={comment.text}/>
+      )
 		})
 
 			return(
 				<div className="dogs" >
-					{display}
+          <List>
+					   {display}
+          </List>
 				</div>
 			)
 	}

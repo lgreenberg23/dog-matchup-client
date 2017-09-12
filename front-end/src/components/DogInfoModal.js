@@ -16,6 +16,7 @@ class ModalScrollingExample extends React.Component {
 		}
 
     this.getComments = this.getComments.bind(this)
+
 	}
 
 	leaveComment = () => {
@@ -51,7 +52,6 @@ class ModalScrollingExample extends React.Component {
   }
 
   deleteComment = (comment, dog) => {
-    
     fetch(`http://localhost:3000/api/v1/dog/comments/${dog}/${comment}`, {
       method: 'delete'
     })
@@ -63,6 +63,22 @@ class ModalScrollingExample extends React.Component {
         })
       })
     );
+  }
+
+  updateComment = (props, comment) => {
+    const createComment = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({userInput: {input: comment, breed: props[0]}})
+    }
+    fetch('http://localhost:3000/api/v1/comments', createComment)
+      .then(res => res.json())
+      .then(res => console.log(res))
+      this.setState({
+        comment: false
+      })
   }
 
   render(){
@@ -79,7 +95,7 @@ class ModalScrollingExample extends React.Component {
                 <p>{this.props.dog[1]}</p>
                 <p>Perfect For You!</p>
                 <h3>Comments: </h3>
-                { this.state.testing? <Comments deleteComment={this.deleteComment} dog={this.props.dog[0]} comments={this.state.comments}/>: <div> Comments Loading</div>}
+                { this.state.testing? <Comments deleteComment={this.deleteComment} updateComment={this.updateComment} dog={this.props.dog[0]} comments={this.state.comments}/>: <div> Comments Loading</div>}
               </Modal.Description>
             </Modal.Content>
             <Button onClick={this.leaveComment}>Leave a comment on this breed</Button>
