@@ -27,17 +27,10 @@ class InputForm extends React.Component{
 	render(){
 		return (
 			<div>
-				<div>
-				<h1>Enter a Medium Username</h1>
-				</div><br></br>
-				<div className="InputForm">
-
-
 			<Input onChange={this.handleChange}
 			    icon={<Icon onClick={this.onSubmit} name='search' inverted circular link />}
 			    placeholder='Search...'
 			 />
-			 </div>
 			</div>
 		)
 	}

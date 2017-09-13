@@ -65,19 +65,21 @@ class ModalScrollingExample extends React.Component {
     );
   }
 
-  updateComment = (props, comment) => {
-    const createComment = {
-      method: 'POST',
+  updateComment = (comment, dog, oldText) => {
+    const updateComment = {
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({userInput: {input: comment, breed: props[0]}})
+      body: JSON.stringify({userInput: {input: comment, breed: dog, oldText: oldText}})
     }
-    fetch('http://localhost:3000/api/v1/comments', createComment)
+    fetch(`http://localhost:3000/api/v1/dog/comments/${dog}/${oldText}`, updateComment)
       .then(res => res.json())
-      .then(res => console.log(res))
-      this.setState({
-        comment: false
+      .then(res => {
+        this.setState({
+          comments: res,
+          testing: true
+        })
       })
   }
 

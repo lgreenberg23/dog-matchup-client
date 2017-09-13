@@ -1,27 +1,31 @@
 import React from 'react'
+import {Segment} from 'semantic-ui-react'
+import BlogCard from './Card'
+import { Card } from 'semantic-ui-react'
 
 class Blogs extends React.Component {
 
-  getAnalysis = (event) => {
-    this.props.fetchAnalysis(event.target.getAttribute('value'))
+  getAnalysis = (link) => {
+    this.props.fetchAnalysis(link)
   }
 
 	render() {
-
     let blogs = this.props.blogs.map((blog, index) => {
       for (let key in blog) {
-        // debugger
-        return (<li key={index} value={blog[key][1]} onClick={this.getAnalysis}>{key}</li>)
+        
+        return (<BlogCard name={key} key={index} link={blog[key][1]} sentence={blog[key][2]} getAnalysis={this.getAnalysis}/>)
       }
     })
 
 		return(
+      <Segment>
       <div className="dogs" >
         Here are your most recent blogs, click on one to get your personality:
-        <ul>
-          {blogs}
-        </ul>
+          <Card.Group>
+            {blogs}
+          </Card.Group>
 			</div>
+      </Segment>
 			)
 	}
 

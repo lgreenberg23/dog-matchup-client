@@ -12,15 +12,14 @@ export default class Comments extends React.Component {
     this.props.deleteComment(e.target.getAttribute('value'), this.props.dog)
   }
 
-  updateComment = (e) => {
-  	// debugger
-    this.props.updateComment(e.target.getAttribute('value'), this.props.dog)
+  updateComment = (value, dog, oldComment) => {
+    this.props.updateComment(value, dog, oldComment)
   }
 
 	render() {
 		let display = this.props.comments.map((comment, index) => {
 				return(
-				<ListItem  key={index} deleteComment={this.deleteComment} updateComment={this.updateComment} comment={comment.text}/>
+				<ListItem key={index} deleteComment={this.deleteComment} updateComment={this.updateComment} comment={comment.text} dog={this.props.dog}/>
       )
 		})
 

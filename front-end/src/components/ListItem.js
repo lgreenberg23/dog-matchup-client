@@ -4,6 +4,9 @@ import EditComment from './EditComment'
 
 class ListExampleDivided extends React.Component {
 
+  updateComment = (value, dog, oldComment) => {
+    this.props.updateComment(value, dog, oldComment)
+  }
 
   render() {
     return (
@@ -13,7 +16,7 @@ class ListExampleDivided extends React.Component {
       <List.Content>
         <List.Header >{this.props.comment}</List.Header>
         <List.Description>
-          <EditComment comment={this.props.comment} updateComment={this.props.updateComment}/>
+          <EditComment comment={this.props.comment} updateComment={this.props.updateComment} dog={this.props.dog}/>
         </List.Description>
       </List.Content>
     </List.Item>

@@ -8,6 +8,8 @@ import Blog from './components/Blogs'
 import Display from './components/display'
 import { Segment} from 'semantic-ui-react'
 import {Route, Redirect} from 'react-router-dom'
+import Navbar from './components/Navbar'
+
 
 
 class App extends Component {
@@ -109,6 +111,7 @@ class App extends Component {
     // <Route path="/" component={Navbar}/>
       return (
         <div>
+          <Navbar fetchBlogs={this.fetchBlogs}/>
         {this.usingRoutes()}
     <Route path="/match" render={()=>
         //this is the fial one with matched dogs and human traits

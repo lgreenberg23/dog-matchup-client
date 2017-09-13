@@ -9,7 +9,9 @@ export default class ModalExampleControlled extends Component {
     super(props)
     this.state = {
       modalOpen: false,
-      input: "" }
+      input: "",
+      oldComment: ''
+     }
     this.updateComment = this.updateComment.bind(this)
   }
 
@@ -17,18 +19,18 @@ export default class ModalExampleControlled extends Component {
 
   handleClose = () => this.setState({ modalOpen: false })
 
-  handleChange = (event) => {
-    console.log(this.state.input)
+  handleChange = (value, oldComment) => {
     this.setState({
-      input: event.target.value
+      input: value,
+      oldComment: oldComment
     })
-
-
   }
 
   updateComment = () => {
-    debugger
-    this.props.updateComment()
+    this.props.updateComment(this.state.input, this.props.dog, this.state.oldComment)
+    this.setState({
+      modalOpen: false
+    })
   }
 
   render() {

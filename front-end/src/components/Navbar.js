@@ -1,4 +1,7 @@
 import React from 'react'
+import InputForm from './InputForm'
+import NavBarInput from './NavBarInput'
+
 
 import {
   Button,
@@ -7,14 +10,14 @@ import {
   Segment
 } from 'semantic-ui-react'
 
-const Navbar = () => (
+const Navbar = (props) => (
   <Segment><div>
 <Menu fixed='top' size='large'>
   <Container>
     <Menu.Item as='a'>Find Your Perfect Match Dog</Menu.Item>
     <Menu.Menu position='right'>
       <Menu.Item className='item'>
-        <Button as='a'>See all Dogs</Button>
+        <NavBarInput fetchBlogs={props.fetchBlogs}/>
       </Menu.Item>
     </Menu.Menu>
   </Container>
