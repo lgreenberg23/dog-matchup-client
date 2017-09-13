@@ -115,7 +115,6 @@ class App extends Component {
     <Route path="/match" render={()=>
         //this is the fial one with matched dogs and human traits
       <div className="App">
-          <InputForm fetchBlogs={this.fetchBlogs}/>
           <HumanTraits person={this.state.personalityTraits}/>
           <DogMatch dogs={this.state.dogs} leaveComment={this.leaveComment} />
       </div>
@@ -124,7 +123,6 @@ class App extends Component {
     //loading bar page
       (
         <div className="App row">
-            <InputForm fetchBlogs={this.fetchBlogs}/>
             <LoadingModal />
         </div>
       )

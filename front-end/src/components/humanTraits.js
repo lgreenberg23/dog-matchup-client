@@ -9,7 +9,11 @@ class HumanTraits extends React.Component{
 
 	render(){
 				return (
+					<div>
+					<br></br>
+					<br></br>
 					<Segment><TraitCards personInfo={this.props.person} /></Segment>
+					</div>
 				)
 		}
 
