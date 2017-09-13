@@ -52,7 +52,6 @@ class App extends Component {
   }
 
   fetchAnalysis = (url) => {
-
     this.setState({
       personalityTraits: undefined,
       dogs: undefined
