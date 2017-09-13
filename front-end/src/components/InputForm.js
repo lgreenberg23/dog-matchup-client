@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon, Input } from 'semantic-ui-react'
+import { Icon, Input, Image } from 'semantic-ui-react'
 
 
 
@@ -27,6 +27,7 @@ class InputForm extends React.Component{
 	render(){
 		return (
 			<div>
+			<Image src='https://cdn.pixabay.com/photo/2014/04/02/14/07/black-306213__340.png' centered size='large'/>
 				<div>
 				<h1>Enter a Medium Username</h1>
 				</div><br></br>

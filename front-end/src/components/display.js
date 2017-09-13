@@ -1,7 +1,5 @@
 import React from 'react'
 import InputForm from './InputForm'
-import Image from './Image'
-
 
 import {
   Button,
@@ -9,7 +7,8 @@ import {
   Grid,
   Header,
   List,
-  Segment
+  Segment,
+  Image
 } from 'semantic-ui-react'
 
 class Display extends React.Component{
@@ -24,6 +23,7 @@ render(){
            let showInput = ''
            if (this.state.clicked === false){
             showInput = (<div>
+                  <Image src='https://cdn.pixabay.com/photo/2014/04/02/14/07/black-306213__340.png' centered size='large'/>
                   <Header as='h3' style={{ fontSize: '2em' }}>Match your personality to the right dog for you</Header>
                   <p style={{ fontSize: '1.33em' }}>
                               Our personality-matching algorithm analyzes your writing to correlate the four most relevant traits between you and our database of dog breeds.
@@ -39,11 +39,7 @@ render(){
   <div>
 <Segment vertical>
   <br></br>
-  <br></br>
-  <br></br>
-  <br></br>
-  <br></br>
-  <br></br>
+
         <Grid container stackable verticalAlign='middle'>
           <Grid.Row>
             <Grid.Column width={16}>
