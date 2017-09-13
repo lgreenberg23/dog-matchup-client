@@ -19,24 +19,24 @@ class Blogs extends React.Component {
 	render() {
     let blogs = this.props.blogs.map((blog, index) => {
       for (let key in blog) {
-        return (<div class="column"><BlogCard name={key} key={index} link={blog[key][1]} sentence={blog[key][2]} getAnalysis={this.getAnalysis}/></div>)
+        return (<Grid.Column><BlogCard name={key} key={index} link={blog[key][1]} sentence={blog[key][2]} getAnalysis={this.getAnalysis}/></Grid.Column>)
       }
     })
 
 		return(
-      <Segment>
-        <div>
+          <div>
           <br></br>
           <h2>Here are your most recent blogs, click on one to get your personality:</h2>
           <br></br>
           <br></br>
-          <div class="ui equal width grid">
+          <Grid centered container columns={3} >
+
             <Card.Group>
                 {blogs}
             </Card.Group>
+        
+        </Grid>
           </div>
-        </div>
-      </Segment>
 			)
 	}
 
