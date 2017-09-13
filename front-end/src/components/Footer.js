@@ -16,15 +16,15 @@ const Footer = () => (
           <Grid.Column width={3}>
             <Header inverted as='h4' content='About' />
             <List link inverted>
-              <List.Item as='a'>Sitemap</List.Item>
+              <List.Item as='a'>DogMatchr</List.Item>
               <List.Item as='a'>Contact Us</List.Item>
               <List.Item as='a'></List.Item>
               <List.Item as='a'></List.Item>
             </List>
           </Grid.Column>
           <Grid.Column width={7}>
-            <Header as='h4' inverted>Footer Header</Header>
-            <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+            <Header as='h4' inverted>Unahppy with your results?</Header>
+            <p>Try writing some new blog posts to input fresh data into our matching algorithm.</p>
           </Grid.Column>
         </Grid.Row>
       </Grid>
