@@ -16,10 +16,11 @@ class DogMatch extends React.Component {
 			return(
 				<Segment>
 					<Grid centered container columns={3}>
+						<br></br>
 						<h2>Based on your personality results above, here are the top 3 choices of dogs breeds that we've come up with for you:</h2>
 						<br></br>
 						{display}
-						
+
 					</Grid>
 					<br></br><br></br><br></br>
 				</Segment>
@@ -35,9 +36,9 @@ export default DogMatch
 
 
 /*
-          <DogCard 
-          dog={this.props.dog} 
-          getComments={this.getComments} 
+          <DogCard
+          dog={this.props.dog}
+          getComments={this.getComments}
           writeComment={this.writeComment}
           updateComment={this.updateComment}
           deleteComment={this.deleteComment}
