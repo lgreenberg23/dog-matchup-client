@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Header, Image, Modal } from 'semantic-ui-react'
+import { Button, Header, Image, Modal, Card } from 'semantic-ui-react'
 import Comment from './Comment'
 import Comments from './Comments'
 
@@ -108,3 +108,7 @@ class ModalScrollingExample extends React.Component {
 }
 
 export default ModalScrollingExample
+
+
+
+

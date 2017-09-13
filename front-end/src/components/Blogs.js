@@ -27,7 +27,7 @@ class Blogs extends React.Component {
       <Segment>
         <div>
           <br></br>
-          <h2>Here are your most recent blogs, click on one to get your personality:</h2>
+          <h2>Here are your most recent blogs, click on one to get your personality analysis:</h2>
           <br></br>
           <br></br>
           <div class="ui equal width grid">

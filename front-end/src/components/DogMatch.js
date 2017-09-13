@@ -1,27 +1,28 @@
 import React from 'react'
-import DogInfoModal from './DogInfoModal'
+// import DogInfoModal from './DogInfoModal'
+import DogCard from './DogCard'
+import {Grid, Column, Segment, Card} from 'semantic-ui-react'
 
 class DogMatch extends React.Component {
-	constructor(props) {
-		super(props)
-
-	}
 
 	render() {
 
 		let display = this.props.dogs.map((dog, index) => {
 			return(
-			<div> {dog[0]}<div><img src={dog[2]} alt=""/></div><DogInfoModal dog={dog}/></div>
+			<div><Grid.Column><Card.Group> <DogCard dog={dog} /></Card.Group></Grid.Column> </div>
 		)
 		})
 
 			return(
-				<div className="dogs" >
-					Based on your personality results above, here are the top 3 choices of dogs breeds that we've come up with for you:
-					<ul>
+				<Segment>
+					<Grid centered container columns={3}>
+						<h2>Based on your personality results above, here are the top 3 choices of dogs breeds that we've come up with for you:</h2>
+						<br></br>
 						{display}
-					</ul>
-				</div>
+						
+					</Grid>
+					<br></br><br></br><br></br>
+				</Segment>
 			)
 	}
 
@@ -30,3 +31,20 @@ class DogMatch extends React.Component {
 
 
 export default DogMatch
+
+
+
+/*
+          <DogCard 
+          dog={this.props.dog} 
+          getComments={this.getComments} 
+          writeComment={this.writeComment}
+          updateComment={this.updateComment}
+          deleteComment={this.deleteComment}
+          comments={this.state.comments}
+          testing={this.state.testing}
+          />
+
+          {dog[0]}<div><img src={dog[2]} alt=""/><DogInfoModal dog={dog}/>
+
+*/
